@@ -1,0 +1,13 @@
+<div class="form-container">
+  <h2>make a post</h2>
+  <%= simple_form_for @post, html: { autocomplete: 'off' } do |f| %>
+      <%= f.input :title, required: true, label: "snack name" %>
+      <%= f.collection_radio_buttons :rating, [[1],[2],[3],[4],[5]], :first, :last, style: "display:inline", required: true, label: "rating:"%>
+      <%= f.input :review, required: true, label: "review:" %>
+      <%= f.input :brand, required: true, label: "brand:" %>
+      <%= f.input :country, required: true, label: "country:" %>
+      <%= f.input :image, as: :file, required: true, label: "upload a pic:" %>
+
+      <%= f.submit "post!", class:'post-button'%>
+  <% end %>
+</div>

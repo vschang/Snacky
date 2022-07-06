@@ -5,4 +5,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  resources :users do [:show, :edit, :update]
+  end
+
+  resources :posts do [:index, :new, :create, :edit, :update, :destroy]
+  end
+
+  get 'profile', to: 'pages#profile'
+  get 'log_out', to: 'pages#destroy_sesh'
+  get 'search', to: 'pages#search'
 end
