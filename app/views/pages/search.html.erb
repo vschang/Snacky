@@ -1,1 +1,9 @@
-<h1>Search by name or brand</h1>
+<h1>search</h1>
+<%= form_tag posts_path, method: :get, class: "" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "search by name or brand"
+  %>
+  <%= submit_tag "search", class: "" %>
+<% end %>

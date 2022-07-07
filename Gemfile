@@ -6,6 +6,12 @@ ruby "2.7.2"
 #country-select gem
 gem 'country_select', '~> 6.0'
 
+#pg gem
+gem "pg_search"
+
+#dot env gem
+gem "dotenv-rails", groups: [:development, :test]
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
 

@@ -1,6 +1,15 @@
 class PostsController < ApplicationController
   def index
-    @all_posts = Post.all
+    @posts = Post.all
+    if params[:query].present?
+      @posts = @posts.global_search(params[:query])
+    else
+      @message = "No results found for #{params[:query]}"
+    end
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -10,6 +19,13 @@ class PostsController < ApplicationController
   def create
     @user = current_user
     @post = Post.new(post_params)
+    @post.user_id = @user.id
+
+    if @post.save
+      redirect_to post_path(@post), notice: "posted successfully!"
+    else
+      render :new, alert: "post failed"
+    end
   end
 
   def edit

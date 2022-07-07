@@ -1,24 +1,29 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
+    <%= link_to "/", class: "navbar-brand" do %>
       <%= image_tag "gummy.jpeg" %>
     <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "home", "#", class: "nav-link" %>
+            <%= link_to "home", "/posts", class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "search", "search", class: "nav-link" %>
+            <%# <%= link_to "search", "search", class: "nav-link" %>
+            <%= form_tag posts_path, method: :get, class: "" do %>
+              <%= text_field_tag :query,
+                params[:query],
+                class: "form-control",
+                placeholder: "search by name or brand"
+              %>
+              <%= submit_tag "search", class: "" %>
+            <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to "post", "#", class: "nav-link" %>
+            <%= link_to "post", "/posts/new", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <%= image_tag "prof.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -29,6 +34,9 @@
             </div>
           </li>
         <% else %>
+          <li class="nav-item">
+              <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+            </li>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
