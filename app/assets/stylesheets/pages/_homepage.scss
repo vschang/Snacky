@@ -1,0 +1,88 @@
+.home-container{
+  display:flex;
+  height:96vh;
+}
+
+.home-btns{
+  display:flex;
+  flex-direction: column;
+  background-color: $pink;
+  border: solid black 1px;
+}
+
+
+.login{
+  border: 0px;
+  background-color: $light-grey;
+  font-size: 26px;
+  font-weight: 300;
+  font-family: 'Inconsolata', monospace;
+  border-bottom: solid black 1px;
+  height: 60vh;
+}
+.login:hover, .faq:hover, .signup:hover{
+  background-color: $pink;
+  text-decoration: underline;
+}
+
+.faq-signup{
+
+}
+
+.faq{
+  font-size: 26px;
+  font-family: 'Inconsolata', monospace;
+  font-weight: 300;
+  background-color: $orange;
+  border: solid black 0px;
+  flex:1;
+}
+
+.signup{
+  font-size: 26px;
+  font-family: 'Inconsolata', monospace;
+  font-weight: 300;
+  background-color: $grey;
+  border: solid black 0px;
+  border-bottom: solid black 1px;
+  flex: 2;
+}
+
+.flex-1{
+  flex:1;
+}
+.flex-13{
+  flex:13;
+  padding-right: 30px;
+  padding-left: 30px;
+
+}
+
+.welcome{
+  font-size: 98px;
+  font-family: 'Geneva', sans-serif;
+  color: $yellow;
+  text-shadow: 1px 0 #000, -1px 0 #000, 0 1px #000, 0 -1px #000,
+               0.5px 0.5px #000, -0.5px -0.5px #000, 0.5px -0.5px #000, -0.5px 0.5px #000;
+  margin-top:0px;
+}
+
+.snacky{
+  font-size: 98px;
+  font-family: 'Gluten', sans-serif;
+  color: $yellow;
+  text-shadow: 1px 0 #000, -1px 0 #000, 0 1px #000, 0 -1px #000,
+               0.5px 0.5px #000, -0.5px -0.5px #000, 0.5px -0.5px #000, -0.5px 0.5px #000;
+  margin-top:0px;
+  margin-bottom:20px;
+}
+
+.about{
+  background-color: $blue;
+  font-size: 30px;
+  border: solid black 1px;
+  border-radius: 82px;
+    padding: 21px 34px;
+    text-align: center;
+    margin-top: 0px;
+}

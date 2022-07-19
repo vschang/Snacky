@@ -1,6 +1,18 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.review %></p>
-<p><%= @post.rating %>stars</p>
-<p><%= @post.brand %></p>
-<p><%= @post.country %></p>
-<%# <%= image_tag @post.image %> 
+<div class="post-container-show">
+  <div class="image">
+    <%= cl_image_tag(@post.image.key, crop: :pad, class: "post-image") %>
+  </div>
+  <div class="post-text">
+    <h3><%= @post.title %></h3>
+    <p><%= @post.rating %> stars</p>
+    <div class="review-text">
+      <p><strong>review: </strong><%= @post.review %></p>
+      <p><strong>brand: </strong><%= @post.brand %></p>
+      <p><strong>country: </strong><%= @post.country_name %></p>
+    </div>
+    <p class="small-p mt-10">posted <%= @post.created_at.strftime("%B %d, %Y") %></p>
+    <p class="small-p mb-10">by <%@post.user.username%></p>
+  </div>
+</div>
+  <%= link_to 'delete', @post, method: :delete, data: { confirm: 'you sure?' }, class:"show-btn" %>
+  <%= link_to "back", posts_path, class:"show-btn" %>

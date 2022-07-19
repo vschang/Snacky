@@ -1,7 +1,7 @@
 <div class="form-container">
   <%= simple_form_for @post do |f| %>
       <%= f.input :title, required: true, label: "snack name" %>
-      <%= f.collection_radio_buttons :rating, [[1],[2],[3],[4],[5]], :first, :last, style: "display:inline", required: true, label: "rating:"%>
+      <%= f.input :rating, collection: (1..5).to_a, label: "rating:", required:true, input_html: {data: {controller: "star-rating"}} %>
       <%= f.input :review, required: true, label: "review:" %>
       <%= f.input :brand, required: true, label: "brand:" %>
       <%= f.input :country, required: true, label: "country:" %>

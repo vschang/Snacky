@@ -8,6 +8,9 @@ class PagesController < ApplicationController
   end
 
   def profile
+    @user = current_user
+    @posts = @user.posts
+    @total = @posts.all.count
   end
 
   def destroy_sesh

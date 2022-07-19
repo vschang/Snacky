@@ -1,8 +1,22 @@
-<h1>All posts</h1>
-<% @posts.each do |post|%>
-  <h3><%= post.title %></h3>
-  <p><%= post.review %></p>
-  <p><%= post.rating %>stars</p>
-  <p><%= post.brand %></p>
-  <p><%= post.country %></p>
-<% end %>
+<div class="all-posts">
+  <% @posts.each do |post|%>
+    <div class="post-container">
+      <div class="image">
+        <%= cl_image_tag(post.image.key, crop: :pad, class: "post-image") %>
+      </div>
+      <div class="post-text">
+        <%= link_to post_path(post.id) do %>
+        <h3><%= post.title %></h3>
+        <% end %>
+        <p><%= post.rating %> stars</p>
+        <div class="review-text">
+          <p><strong>review: </strong><%= post.review %></p>
+          <p><strong>brand: </strong><%= post.brand %></p>
+          <p><strong>country: </strong><%= post.country_name %></p>
+        </div>
+        <p class="small-p mt-10">posted <%= post.created_at.strftime("%B %d, %Y") %></p>
+        <p class="small-p mb-10">by @<%post.user.username%></p>
+      </div>
+    </div>
+    <% end %>
+</div>

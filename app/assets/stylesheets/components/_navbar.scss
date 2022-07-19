@@ -1,12 +1,70 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+
+.navbar{
+  background-color: $orange;
+  border: black solid 0.25px;
+  height: 10vh;
+  display: flex;
+  align-items:center;
+  position:sticky;
+  top: 0px;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.nav-btn{
+  border: black solid 0.5px;
+  height: 100%;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.nav-btn:active{
+  background-color: $pink;
+  text-decoration: underline;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+  font-family: 'Inconsolata', monospace;
+  font-weight: 300;
+}
+
+#home-nav{
+  background-color: $grey;
+  flex:1;
+}
+
+#home-nav:hover, #home-nav:active{
+  background-color: $pink;
+  text-decoration: underline;
+}
+
+#post-nav{
+  background-color: $orange;
+  flex:1;
+}
+
+#post-nav:hover, #post-nav:active{
+  background-color: $pink;
+  text-decoration: underline 2px;
+}
+
+#search-nav{
+  background-color: $green;
+  flex:2;
+}
+#search-nav:hover, #search-nav:active{
+  background-color: $pink;
+  text-decoration: underline;
+}
+
+#profile-nav{
+  background-color: $light-grey;
+  flex:1;
+}
+#profile-nav:hover, #profile-nav:active{
+  background-color: $pink;
+  text-decoration: underline;
+}
+
+.input{
+  font-family: 'inconsolata', monospace;
 }

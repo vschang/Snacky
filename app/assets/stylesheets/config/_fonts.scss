@@ -1,16 +1,49 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gluten:wght@600;700;800&family=Inconsolata:wght@200;300;400;500;600;900&display=swap');
 
 // Define fonts for body and headers
-$body-font: "Work Sans", "Helvetica", "sans-serif";
-$headers-font: "Nunito", "Helvetica", "sans-serif";
+$body-font: 'Inconsolata', 'monospace';
+$headers-font: 'Gluten', 'cursive';
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
-//   font-family: "Font Name";
+//   font-family: "Geneva";
 //   src: font-url('FontFile.eot');
 //   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
 //        font-url('FontFile.woff') format('woff'),
 //        font-url('FontFile.ttf') format('truetype')
 // }
-// $my-font: "Font Name";
+// $geneva-font: "Geneva";
+
+@font-face {
+  font-family:'Geneva';
+  src: local('Geneva'),
+  url(./fonts/geneva.ttf) format('truetype');
+}
+
+body {
+  font-family: 'Inconsolata', monospace;
+  font-family: 'Gluten', cursive;
+  margin: 10px;
+}
+
+h1{
+  font-family: 'Gluten', cursive;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+h2{
+  font-family: 'Geneva';
+  font-size: 24px;
+}
+
+h3{
+  font-family: 'Geneva';
+  font-size: 24px;
+}
+
+p{
+  font-family: 'Inconsolata', monospace;
+  font-size: 16px;
+}

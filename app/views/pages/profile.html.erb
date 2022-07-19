@@ -1,1 +1,29 @@
-<h1>Your profile</h1>
+<div class="profile-info">
+  <%= image_tag(@user.prof_pic, class: "prof-pic")%>
+  <div class="profile-text">
+    <h3 class="welcome-profile">Hi <%= @user.first_name %>, you've made <%= @total%> posts</h3>
+    <p class="text-right">Snacky contributer since <%=@user.created_at.strftime("%B %d, %Y") %></p>
+  </div>
+</div>
+
+<div class="all-posts">
+  <% @posts.each do |post|%>
+    <div class="post-container">
+      <div class="image">
+        <%= cl_image_tag(post.image.key, crop: :pad, class: "post-image") %>
+      </div>
+      <div class="post-text">
+        <%= link_to post_path(post.id) do %>
+        <h3><%= post.title %></h3>
+        <% end %>
+        <p><%= post.rating %> stars</p>
+        <div class="review-text">
+          <p><strong>review: </strong><%= post.review %></p>
+          <p><strong>brand: </strong><%= post.brand %></p>
+          <p><strong>country: </strong><%= post.country_name %></p>
+        </div>
+        <p class="small-p mt-10 mb-10">posted <%= post.created_at.strftime("%B %d, %Y") %></p>
+      </div>
+    </div>
+    <% end %>
+</div>

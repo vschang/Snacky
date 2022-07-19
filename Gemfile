@@ -9,8 +9,8 @@ gem 'country_select', '~> 6.0'
 #pg gem
 gem "pg_search"
 
-#dot env gem
-gem "dotenv-rails", groups: [:development, :test]
+#cloudinary gem
+gem "cloudinary"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"

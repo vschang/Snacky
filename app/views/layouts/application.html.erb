@@ -8,12 +8,16 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;900&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
+    <% unless action_name == "home" %>
+      <%= render 'shared/navbar' if user_signed_in? %>
+    <% end %>
     <%= yield %>
     <script src="bootstrap.js"></script>
   </body>
