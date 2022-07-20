@@ -22,9 +22,9 @@ class PostsController < ApplicationController
     @post.user_id = @user.id
 
     if @post.save
-      redirect_to post_path(@post), notice: "posted successfully!"
+      redirect_to post_path(@post), notice: "posted successfully 🎉"
     else
-      render :new, alert: "post failed"
+      render :new, alert: "post failed 💔"
     end
   end
 

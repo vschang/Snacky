@@ -1,6 +1,15 @@
 .alert {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
+  bottom: 25px;
+  right: 25px;
   z-index: 1000;
+  background-color: $yellow;
+  padding: 10px 20px;
+  color: $orange;
+  border-radius: 30px;
+  border: $orange 1px solid;
+  box-shadow: 4px 4px $orange;
+}
+.x-btn{
+  color:black;
 }

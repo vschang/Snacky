@@ -16,7 +16,20 @@
         <%= link_to post_path(post.id) do %>
         <h3><%= post.title %></h3>
         <% end %>
-        <p><%= post.rating %> stars</p>
+        <div class="stars">
+          <% case post.rating %>
+            <% when 1 %>
+              <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+            <% when 2%>
+              <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+            <% when 3%>
+              <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+            <% when 4%>
+              <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i>
+            <% when 5%>
+              <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i>
+            <% end %>
+        </div>
         <div class="review-text">
           <p><strong>review: </strong><%= post.review %></p>
           <p><strong>brand: </strong><%= post.brand %></p>

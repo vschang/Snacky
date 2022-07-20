@@ -10,13 +10,14 @@
   margin: 0 auto;
   border-bottom: solid black 1px;
 }
-.post-container-show{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 61vw;
-  margin: 0 auto;
-}
+
+// .post-container-show{
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   width: 61vw;
+//   margin: 0 auto;
+// }
 
 .show-btn{
   font-size: 24px;
@@ -61,4 +62,37 @@ h3{
 
 .mb-10{
   margin-bottom: 10px;
+}
+
+.star{
+  color:$yellow;
+  text-shadow: 1px 0 #000, -1px 0 #000, 0 1px #000, 0 -1px #000,
+               0.5px 0.5px #000, -0.5px -0.5px #000, 0.5px -0.5px #000, -0.5px 0.5px #000;
+  margin: 2px;
+}
+.empty-star{
+  color: #ffcaed;
+  text-shadow: 1px 0 #000, -1px 0 #000, 0 1px #000, 0 -1px #000,
+               0.5px 0.5px #000, -0.5px -0.5px #000, 0.5px -0.5px #000, -0.5px 0.5px #000;
+  margin: 2px;
+}
+.stars{
+  display:flex;
+  margin-bottom: 20px;
+}
+.delete-back{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 65vw;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.mb-20{
+  margin-bottom: 20px;
+}
+
+.delete{
+  color: rgb(203, 0, 0);
 }

@@ -1,18 +1,33 @@
-<div class="post-container-show">
+<div class="post-container">
   <div class="image">
     <%= cl_image_tag(@post.image.key, crop: :pad, class: "post-image") %>
   </div>
   <div class="post-text">
     <h3><%= @post.title %></h3>
-    <p><%= @post.rating %> stars</p>
+    <div class="stars">
+      <% case @post.rating %>
+        <% when 1 %>
+          <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+        <% when 2%>
+          <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+        <% when 3%>
+          <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+        <% when 4%>
+          <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i>
+        <% when 5%>
+          <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i>
+        <% end %>
+    </div>
     <div class="review-text">
       <p><strong>review: </strong><%= @post.review %></p>
       <p><strong>brand: </strong><%= @post.brand %></p>
       <p><strong>country: </strong><%= @post.country_name %></p>
     </div>
     <p class="small-p mt-10">posted <%= @post.created_at.strftime("%B %d, %Y") %></p>
-    <p class="small-p mb-10">by <%@post.user.username%></p>
+    <p class="small-p mb-20">by @<%= @post.user.username%></p>
   </div>
 </div>
-  <%= link_to 'delete', @post, method: :delete, data: { confirm: 'you sure?' }, class:"show-btn" %>
+<div class="delete-back">
   <%= link_to "back", posts_path, class:"show-btn" %>
+  <%= link_to 'delete', @post, method: :delete, data: { confirm: 'you sure?' }, class:"show-btn delete" %>
+</div>

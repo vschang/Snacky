@@ -1,12 +1,13 @@
 <div class="form-container">
   <%= simple_form_for @post do |f| %>
-      <%= f.input :title, required: true, label: "snack name" %>
-      <%= f.input :rating, collection: (1..5).to_a, label: "rating:", required:true, input_html: {data: {controller: "star-rating"}} %>
-      <%= f.input :review, required: true, label: "review:" %>
-      <%= f.input :brand, required: true, label: "brand:" %>
-      <%= f.input :country, required: true, label: "country:" %>
-      <%= f.input :image, as: :file, required: true, label: "upload a pic:" %>
-
-      <%= f.submit "post!", class:'post-button'%>
+      <%= f.input :title, required: true, label: "snack name:", label_html: { class: 'form-text' }, input_html: { class: 'title-input title' } %>
+      <%= f.input :rating, collection: (1..5).to_a, label: "stars:", required:true, input_html: {data: {controller: "star-rating"}}, label_html: { class: 'form-text' }, input_html: { class: 'title-input stars' } %>
+      <%= f.input :review, required: true, label: "review:", label_html: { class: 'form-text' }, input_html: { class: 'title-input review' } %>
+      <%= f.input :brand, required: true, label: "brand:", label_html: { class: 'form-text' }, input_html: { class: 'title-input brand' } %>
+      <div class="flex">
+      <%= f.input :country, required: true, label: "country:", label_html: { class: 'form-text' }, input_html: { class: 'title-input country' } %>
+      <%= f.input :image, as: :file, required: true, label: "upload a pic:", label_html: { class: 'form-text upload-text' }, input_html: { class: 'title-input upload' }, id: "file-upload-button" %>
+      </div>
+      <%= f.submit "post!", class:'post-btn'%>
   <% end %>
 </div>
