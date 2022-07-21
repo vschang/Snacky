@@ -5,6 +5,11 @@ class PagesController < ApplicationController
   end
 
   def search
+    if params[:query].present?
+      @posts = @posts.global_search(params[:query])
+    else
+      @message = "No results found for #{params[:query]}"
+    end
   end
 
   def profile

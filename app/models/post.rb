@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
   has_one_attached :image
+  has_many :post_likes, dependent: :destroy
   belongs_to :user
+  validates :title, :rating, :country, :review, :brand, presence: true
 
   def country_name
     c = ISO3166::Country[self.country]

@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   resources :users do [:show, :edit, :update]
   end
 
-  resources :posts do [:index, :new, :create, :edit, :update, :destroy]
+  resources :posts do
+  # only: [:index, :new, :create, :edit, :update, :destroy] do
+    resources :post_likes, only: [:create]
   end
+  resources :post_likes, only: [:destory]
 
   get 'profile', to: 'pages#profile'
   get 'log_out', to: 'pages#destroy_sesh'

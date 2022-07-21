@@ -1,4 +1,35 @@
 <div class="all-posts">
+
+  <div class="sort-menu" >
+    <form action="/posts" id="post-form">
+    </form>
+
+    <label for="order">sort by:</label>
+    <select class="sort" name="order" id="order" onchange="this.form.submit()" form="post-form">
+      <% if @selected == "newest" || !@selected %>
+        <option value="newest" selected>newest first</option>
+      <% else %>
+        <option value="newest" >newest first</option>
+      <% end %>
+      <% if @selected == "oldest"%>
+        <option value="oldest" selected>oldest first</option>
+      <% else %>
+        <option value="oldest">oldest first</option>
+      <% end %>
+      <% if @selected == "highest"%>
+        <option value="highest" selected>highest rated</option>
+      <% else %>
+        <option value="highest">highest rated</option>
+      <% end %>
+      <% if @selected == "lowest"%>
+        <option value="lowest" selected>lowest rated</option>
+      <% else %>
+        <option value="lowest">lowest rated</option>
+      <% end %>
+    </select>
+  </div>
+
+
   <% @posts.each do |post|%>
     <div class="post-container">
       <div class="image">
@@ -6,7 +37,7 @@
       </div>
       <div class="post-text">
         <%= link_to post_path(post.id) do %>
-        <h3><%= post.title %></h3>
+        <h3 class="post-title"><%= post.title %></h3>
         <% end %>
         <div class="stars">
           <% case post.rating %>
@@ -29,7 +60,11 @@
         </div>
         <p class="small-p mt-10">posted <%= post.created_at.strftime("%B %d, %Y") %></p>
         <p class="small-p mb-10">by @<%= post.user.username%></p>
+        <div class="likes-div">
+        <p>likes <%= post.post_likes.count %></p>
+        </div>
       </div>
     </div>
     <% end %>
+
 </div>

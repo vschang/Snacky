@@ -49,6 +49,15 @@ input[type="file"] {
   padding-left: 30px;
 }
 
+input::file-selector-button{
+  font-family: 'Inconsolata', monospace;
+  background-color: $yellow;
+  border: solid $orange 1px;
+  color: $orange;
+  border-radius: 15px;
+  margin-right: 20px;
+}
+
 #file-upload-button{
   font-size: 20px;
   font-family: 'Inconsolata', monospace;
@@ -81,4 +90,21 @@ input[type="file"] {
 }
 .remember-me{
   border: solid black 0px;
+}
+
+label{
+  font-family: 'Geneva';
+}
+
+select{
+  color: black;
+  background-color: $orange;
+  font-family: 'Geneva';
+  border: solid $blue 1px;
+}
+
+option{
+  color: $orange;
+  background-color: $blue;
+  font-family: 'Geneva';
 }

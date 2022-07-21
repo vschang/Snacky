@@ -26,8 +26,22 @@
     <p class="small-p mt-10">posted <%= @post.created_at.strftime("%B %d, %Y") %></p>
     <p class="small-p mb-20">by @<%= @post.user.username%></p>
   </div>
+  <div class="likes-container">
+    <% if user_signed_in? %>
+      <% if @liked_post %>
+        <%= button_to "unlike", post_post_likes_path(@post), method: :post, class: "show-btn" %>
+      <% else %>
+        <%= button_to "like", post_post_likes_path(@post), method: :post, class: "show-btn" %>
+      <% end %>
+
+      <%# <%= button_to "like", post_post_likes_path(@post), method: :post, class: "show-btn" %>
+    <% end %>
+      <p>likes <%= @post.post_likes.count %></p>
+
+  </div>
 </div>
 <div class="delete-back">
   <%= link_to "back", posts_path, class:"show-btn" %>
-  <%= link_to 'delete', @post, method: :delete, data: { confirm: 'you sure?' }, class:"show-btn delete" %>
+  <%= link_to 'edit', edit_post_path(@post), method: :patch, class:"show-btn" %>
+  <%= button_to 'delete', post_path(@post), method: :delete, data: { confirm: 'you sure 😢?' }, class:"show-btn delete" %>
 </div>
