@@ -1,43 +1,66 @@
 <div class="post-container">
-  <div class="image">
-    <%= cl_image_tag(@post.image.key, crop: :pad, class: "post-image") %>
-  </div>
-  <div class="post-text">
-    <h3><%= @post.title %></h3>
-    <div class="stars">
-      <% case @post.rating %>
-        <% when 1 %>
-          <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
-        <% when 2%>
-          <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
-        <% when 3%>
-          <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
-        <% when 4%>
-          <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i>
-        <% when 5%>
-          <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i>
+  <div class="image-text-container">
+    <div class="image">
+      <%= cl_image_tag(@post.image.key, crop: :pad, class: "post-image") %>
+    </div>
+    <div class="post-text">
+      <h3><%= @post.title %></h3>
+      <div class="stars">
+        <% case @post.rating %>
+          <% when 1 %>
+            <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+          <% when 2%>
+            <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+          <% when 3%>
+            <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+          <% when 4%>
+            <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i>
+          <% when 5%>
+            <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i>
+          <% end %>
+      </div>
+      <div class="review-text">
+        <p><strong>review: </strong><%= @post.review %></p>
+        <p><strong>brand: </strong><%= @post.brand %></p>
+        <p><strong>country: </strong><%= @post.country_name %></p>
+      </div>
+      <p class="small-p mt-10">posted <%= @post.created_at.strftime("%B %d, %Y") %></p>
+      <p class="small-p mb-20">by @<%= @post.user.username%></p>
+      </div>
+    </div>
+  <div class="likes-comments-container">
+    <div class="likes-container">
+      <% if user_signed_in? %>
+        <% if @liked_post %>
+          <%= button_to "unlike", post_post_likes_path(@post), method: :post, class: "show-btn" %>
+        <% else %>
+          <%= button_to "like", post_post_likes_path(@post), method: :post, class: "show-btn" %>
         <% end %>
-    </div>
-    <div class="review-text">
-      <p><strong>review: </strong><%= @post.review %></p>
-      <p><strong>brand: </strong><%= @post.brand %></p>
-      <p><strong>country: </strong><%= @post.country_name %></p>
-    </div>
-    <p class="small-p mt-10">posted <%= @post.created_at.strftime("%B %d, %Y") %></p>
-    <p class="small-p mb-20">by @<%= @post.user.username%></p>
-  </div>
-  <div class="likes-container">
-    <% if user_signed_in? %>
-      <% if @liked_post %>
-        <%= button_to "unlike", post_post_likes_path(@post), method: :post, class: "show-btn" %>
-      <% else %>
-        <%= button_to "like", post_post_likes_path(@post), method: :post, class: "show-btn" %>
+
+        <%# <%= button_to "like", post_post_likes_path(@post), method: :post, class: "show-btn" %>
       <% end %>
-
-      <%# <%= button_to "like", post_post_likes_path(@post), method: :post, class: "show-btn" %>
-    <% end %>
-      <p>likes <%= @post.post_likes.count %></p>
-
+        <p>likes <%= @post.post_likes.count %></p>
+    </div>
+    <div class ="comments-container">
+      <% if user_signed_in? %>
+        <%# <div class='comment-box'>
+          <%= simple_form_for([ @post, @post_comment ]) do |f| %>
+            <%# <%= f.input :content, placeholder:'have something nice to say?', label: false, as: :text, class: 'comment-box' %>
+            <%# <%= f.submit 'post!', class:'comment-button' %> 
+          <%# <% end %>
+        <%# </div> %>
+        <%= button_to "comment", post_post_comments_path(@post), method: :get, class: "show-btn" %>
+      <% end %>
+      <% if @post.post_comments.any? %>
+        <% @post.post_comments.each do |comment| %>
+          <div class="comment-div">
+            <p class="small-p"><%= comment.user.username %> said:</p>
+            <p class="small-p"><%= comment.content %></p>
+            <p class="small-p">posted <%= comment.created_at.strftime("%B %d, %Y") %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 <div class="delete-back">

@@ -32,11 +32,23 @@
       </button>
 
     <% else %>
-      <button class="nav-item">
-          <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+      <button class="nav-btn active" id="home-nav">
+        <%= link_to "home", "/posts", class: "nav-link" %>
       </button>
-      <button class="nav-item">
-        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+      <button class="nav-btn active" id="search-nav">
+        <%# <%= link_to "search", "search", class: "nav-link" %>
+        <%= form_tag posts_path, method: :get, class: "" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "search by name or brand",
+            style:"font-family: 'inconsolata', monospace; font-size: 20px; width: 55%; margin-right: 10px; color: black; background-color: #FFCAED; border: black solid 0.5px;"
+          %>
+          <%= submit_tag "go!", class: "go-btn" %>
+        <% end %>
+      </button>
+      <button class="nav-btn active" id="login-nav">
+        <%= link_to "login", new_user_session_path, class: "nav-link" %>
       </button>
     <% end %>
 </div>

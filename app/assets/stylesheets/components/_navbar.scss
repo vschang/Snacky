@@ -32,9 +32,13 @@ a{
   flex:1;
 }
 
-#home-nav:hover, #home-nav:active{
+#home-nav:hover, #post-nav:hover, #login-nav:hover, #profile-nav:hover{
   background-color: $pink;
   text-decoration: underline;
+}
+
+#search-nav:hover,#search-nav:active{
+  background-color: $pink;
 }
 
 #post-nav{
@@ -42,7 +46,7 @@ a{
   flex:1;
 }
 
-#post-nav:hover, #post-nav:active{
+#home-nav:active, #post-nav:active,   #login-nav:active,  #profile-nav:hover{
   background-color: $pink;
   text-decoration: underline 2px;
 }
@@ -51,18 +55,15 @@ a{
   background-color: $green;
   flex:2;
 }
-#search-nav:hover, #search-nav:active{
-  background-color: $pink;
-  text-decoration: underline;
-}
 
 #profile-nav{
   background-color: $light-grey;
   flex:1;
 }
-#profile-nav:hover, #profile-nav:active{
-  background-color: $pink;
-  text-decoration: underline;
+
+#login-nav{
+  background-color: $light-grey;
+  flex:1;
 }
 
 .input{

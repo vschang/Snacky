@@ -4,10 +4,8 @@ class PostLikesController < ApplicationController
     @post = Post.find(params[:post_id])
     @post_like.user = current_user
     @post_like.post = @post
-    # @post_like.save
-    # redirect_to post_path(@post)
-
     user = current_user
+    
     @liked_post = PostLike.find_by(post_id: @post.id, user_id: user.id)
     if @liked_post
       @liked_post.destroy

@@ -1,17 +1,30 @@
 <div class="home-container">
-  <div class="home-btns  flex-1">
-    <button class="login">L <br>o <br>g <br>i <br>n</button>
+  <div class="home-btn-1  flex-1">
+    <button class="login">
+     <%= link_to "login", "/users/sign_in", class: "nav-link" %>
+    </button>
+    <button class="welcome-btn">
+     <%= link_to "welcome!", "/", class: "nav-link active" %>
+    </button>
   </div>
 
   <div class="flex-13">
-    <h1 class="welcome">Welcome to</h1>
-    <h1 class="snacky">Snacky</h1>
+    <div>
+      <h1 class="welcome">Welcome to</h1>
+      <h1 class="snacky">Snacky</h1>
+    </div>
     <p class="about">Snacky is your new favorite platform for sharing your favorite snacks with your best friends, your mom or with the whole world!</p>
-    <button class="get-started-btn"><%= link_to "lets go!", "/posts" %></button>
+    <div class="button-div">
+      <button class="get-started-btn"><%= link_to "lets go!", "/posts" %></button>
+    </div>
   </div>
 
-  <div class="home-btns faq-signup flex-1">
-    <button class="signup flex-1">S<br>i<br>g<br>n<br>&nbsp;U<br>p</button>
-    <button class="faq flex-1">F<br>A<br>Q</button>
+  <div class="home-btn-2 faq-signup flex-1">
+    <button class="signup">
+      <%= link_to "signup", "/users/sign_up", class: "nav-link" %>
+    </button>
+    <button class="faq">
+      <%= link_to "FAQ", "/faq", class: "nav-link" %>
+    </button>
   </div>
 </div>

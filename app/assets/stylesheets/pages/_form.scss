@@ -86,7 +86,6 @@ input::file-selector-button{
 .snacky-title{
   display:flex;
   justify-content: center;
-  padding-top: 40px;
 }
 .remember-me{
   border: solid black 0px;
@@ -96,15 +95,33 @@ label{
   font-family: 'Geneva';
 }
 
-select{
-  color: black;
-  background-color: $orange;
-  font-family: 'Geneva';
-  border: solid $blue 1px;
-}
+// select{
+//   color: black;
+//   background-color: $orange;
+//   font-family: 'Geneva';
+//   border: solid $blue 1px;
+// }
 
 option{
   color: $orange;
   background-color: $blue;
   font-family: 'Geneva';
+}
+
+.sign-in-form{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+}
+
+.post-div{
+  display:flex;
+  justify-content: flex-end;
+    margin-right: 10px;
+}
+
+.invalid-feedback{
+  font-family: 'Geneva';
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.607);
 }

@@ -1,31 +1,53 @@
-<div class="login-container"> 
-  <div class="snacky-title">
-    <h1 class="snacky">Snacky</h1>
+
+<div class="home-container">
+  <div class="home-btn-1  flex-1">
+    <button class="login active">
+     <%= link_to "login", "/users/sign_in", class: "nav-link active" %>
+    </button>
+    <button class="welcome-btn active">
+     <%= link_to "welcome!", "/", class: "nav-link active" %>
+    </button>
   </div>
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-    <div class="form-inputs">
-      <%= f.input :email,
-                  required: false,
-                  autofocus: true,
-                  label: "email",
-                  input_html: { autocomplete: "email" },
-                  label_html: { class: 'login-text' },
-                  input_html: { class: 'login-input ' } %>
-      <%= f.input :password,
-                  required: false,
-                  label: "password",
-                  input_html: { autocomplete: "current-password" },
-                  label_html: { class: 'login-text' },
-                  input_html: { class: 'login-input' } %>
 
-      <%# IDK how to style this %>
-      <%# <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  <div class="flex-13 sign-in-container">
+    <div class="snacky-title">
+      <h1 class="snacky">Snacky</h1>
+      <h3 class="sign-in-text" >sign in</h3>
     </div>
+    <div class="sign-in-form">
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+        <div class="form-inputs">
+          <%= f.input :email,
+                      required: false,
+                      autofocus: true,
+                      label: "email",
+                      input_html: { autocomplete: "email" },
+                      label_html: { class: 'login-text' },
+                      input_html: { class: 'login-input width-100 mb-25' } %>
+          <%= f.input :password,
+                      required: false,
+                      label: "password",
+                      input_html: { autocomplete: "current-password" },
+                      label_html: { class: 'login-text' },
+                      input_html: { class: 'login-input width-100' } %>
 
-    <div class="form-actions">
-      <%= f.button :submit, "log in", class:'post-btn' %>
+          <%# IDK how to style this %>
+          <%# <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
+        <div class="form-submit-btn">
+          <%= f.button :submit, "log in", class:'post-btn' %>
+        </div>
+      <% end %>
+    <%= render "devise/shared/links" %>
     </div>
-  <% end %>
+  </div>
 
-  <%= render "devise/shared/links" %>
+  <div class="home-btn-2 faq-signup flex-1">
+    <button class="signup active">
+      <%= link_to "signup", "/users/sign_up", class: "nav-link active"  %>
+    </button>
+    <button class="faq active">
+      <%= link_to "FAQ", "/faq", class: "nav-link active" %>
+    </button>
+  </div>
 </div>

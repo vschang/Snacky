@@ -1,0 +1,26 @@
+<div class="home-container">
+  <div class="home-btn-1  flex-1">
+    <button class="login">
+     <%= link_to "login", "/users/sign_in", class: "nav-link active" %>
+    </button>
+    <button class="welcome-btn">
+     <%= link_to "welcome!", "/", class: "nav-link active" %>
+    </button>
+  </div>
+
+  <div class="flex-13">
+    <div class="snacky-title">
+      <h1 class="snacky">Snacky</h1>
+      <h3 class="sign-in-text">FAQ</h3>
+    </div>
+  </div>
+
+  <div class="home-btn-2 faq-signup flex-1">
+    <button class="signup ">
+      <%= link_to "signup", "/users/sign_up", class: "nav-link active"  %>
+    </button>
+    <button class="faq ">
+      <%= link_to "FAQ", "/faq", class: "nav-link active" %>
+    </button>
+  </div>
+</div>

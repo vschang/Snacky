@@ -4,6 +4,7 @@
 }
 .post-container{
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   width: 65vw;
@@ -34,6 +35,14 @@
 }
 h3{
   text-decoration: underline;
+}
+
+.image-text-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  
 }
 
 .post-text{
@@ -103,5 +112,19 @@ h3{
 }
 
 .post-title:hover{
-  background: $blue;
+  background: black;
+  color: $pink;
+}
+
+.sort-menu{
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 20px 0px 20px;
+}
+
+.likes-comments-container{
+  display:flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 100%;
 }

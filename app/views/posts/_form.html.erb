@@ -8,6 +8,8 @@
       <%= f.input :country, required: true, label: "country:", label_html: { class: 'form-text' }, input_html: { class: 'title-input country' } %>
       <%= f.input :image, as: :file, required: true, label: "upload a pic:", label_html: { class: 'form-text upload-text' }, input_html: { class: 'title-input upload' }, id: "file-upload-button" %>
       </div>
-      <%= f.submit "post!", class:'post-btn'%>
+      <div class="post-div">
+        <%= f.submit "post!", class:'post-btn'%>
+      </div>
   <% end %>
 </div>

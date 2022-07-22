@@ -15,8 +15,9 @@
 
   <body>
     <%= render "shared/flashes" %>
-    <% unless action_name == "home" %>
-      <%= render 'shared/navbar' if user_signed_in? %>
+    <% unless current_page?(new_user_session_path) || current_page?(new_user_registration_path) || action_name == "faq" || action_name == "home"  %>
+      <%= render 'shared/navbar' %>
+      <%# if user_signed_in? %>
     <% end %>
     <%= yield %>
     <script src="bootstrap.js"></script>

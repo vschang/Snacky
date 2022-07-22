@@ -4,7 +4,7 @@
     <form action="/posts" id="post-form">
     </form>
 
-    <label for="order">sort by:</label>
+    <label for="order">sort by &nbsp;</label>
     <select class="sort" name="order" id="order" onchange="this.form.submit()" form="post-form">
       <% if @selected == "newest" || !@selected %>
         <option value="newest" selected>newest first</option>
@@ -25,6 +25,11 @@
         <option value="lowest" selected>lowest rated</option>
       <% else %>
         <option value="lowest">lowest rated</option>
+      <% end %>
+      <% if @selected == "popular"%>
+        <option value="popular" selected>most popular</option>
+      <% else %>
+        <option value="popular">most popular</option>
       <% end %>
     </select>
   </div>
@@ -66,5 +71,4 @@
       </div>
     </div>
     <% end %>
-
 </div>

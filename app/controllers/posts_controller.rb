@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
     @all_posts = Post.all
@@ -12,6 +13,12 @@ class PostsController < ApplicationController
 
     @selected = params[:order]
 
+    @likes_of_posts_with_i = @posts.each_with_index.map {|post, index| [post.post_likes.count, index]}
+    @likes_of_posts_with_i.sort_by! {|likes, index| likes}.reverse
+    @index_of_likes_of_posts_with_i = @likes_of_posts_with_i.map {|likes, index| index}
+    @posts_with_i = @index_of_likes_of_posts_with_i.map {|index| @posts[index]}
+
+
     case params[:order]
     when "newest"
       @posts = Post.all.order(:created_at => :desc)
@@ -21,6 +28,8 @@ class PostsController < ApplicationController
       @posts = Post.all.order(:rating => :desc)
     when "lowest"
       @posts = Post.all.order(:rating => :asc)
+    when "popular"
+      @posts = @posts_with_i.reverse
     end
 
   end
