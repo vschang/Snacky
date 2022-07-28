@@ -3,6 +3,18 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.7.2"
 
+gem 'turbolinks', '~> 5'
+gem 'webpacker', '~> 4.x'
+
+#faker
+gem 'faker'
+
+#geocoder
+gem "geocoder"
+
+#file validator
+gem 'file_validators'
+
 #country-select gem
 gem 'country_select', '~> 6.0'
 

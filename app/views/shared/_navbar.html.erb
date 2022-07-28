@@ -1,34 +1,30 @@
 <div class="navbar">
     <% if user_signed_in? %>
-      <button class="nav-btn active" id="home-nav">
+      <button class="nav-btn "
+              id="home-nav"
+              data-controller="navbar-active"
+              data-action="click->navbar-active#activate">
         <%= link_to "home", "/posts", class: "nav-link" %>
       </button>
 
-      <button class="nav-btn active" id="post-nav">
+      <button class="nav-btn " id="post-nav" data-controller="navbar-active">
         <%= link_to "post", "/posts/new", class: "nav-link" %>
       </button>
 
-      <button class="nav-btn active" id="search-nav">
-        <%# <%= link_to "search", "search", class: "nav-link" %>
-        <%= form_tag posts_path, method: :get, class: "" do %>
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "search by name or brand",
-            style:"font-family: 'inconsolata', monospace; font-size: 20px; width: 55%; margin-right: 10px; color: black; background-color: #FFCAED; border: black solid 0.5px;"
-          %>
-          <%= submit_tag "go!", class: "go-btn" %>
-        <% end %>
+      <button class="nav-btn " id="search-nav" data-controller="navbar-active">
+        <%= link_to "search", "/search", class: "nav-link" %>
       </button>
 
-      <button class="nav-btn active" id="profile-nav">
-        <%= link_to profile_path ,class: "dropdown-item" do %>
-        profile
-        <%= image_tag "prof.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <button class="nav-btn " id="profile-nav" data-controller="navbar-active">
+        <%= link_to profile_path do %>
+        <% if current_user.prof_pic.present? %>
+          <%= image_tag(@user.prof_pic, class: "avatar") unless @user.prof_pic.nil? %>
+        <% else %>
+          <%= image_tag('avatar.png', class:'avatar') %>
         <% end %>
-        <%# make the prof pic a drop down menu %>
-          <%= link_to "log out", "/log_out", data: {turbo_method: :delete}, class: "dropdown-item" %>
-        <%#  %>
+        profile
+        <% end %>
+
       </button>
 
     <% else %>
@@ -36,16 +32,7 @@
         <%= link_to "home", "/posts", class: "nav-link" %>
       </button>
       <button class="nav-btn active" id="search-nav">
-        <%# <%= link_to "search", "search", class: "nav-link" %>
-        <%= form_tag posts_path, method: :get, class: "" do %>
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "search by name or brand",
-            style:"font-family: 'inconsolata', monospace; font-size: 20px; width: 55%; margin-right: 10px; color: black; background-color: #FFCAED; border: black solid 0.5px;"
-          %>
-          <%= submit_tag "go!", class: "go-btn" %>
-        <% end %>
+        <%= link_to "search", "/search", class: "nav-link" %>
       </button>
       <button class="nav-btn active" id="login-nav">
         <%= link_to "login", new_user_session_path, class: "nav-link" %>

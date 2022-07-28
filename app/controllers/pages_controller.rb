@@ -8,10 +8,11 @@ class PagesController < ApplicationController
   end
 
   def search
+    @posts = Post.all
     if params[:query].present?
       @posts = @posts.global_search(params[:query])
     else
-      @message = "No results found for #{params[:query]}"
+      @posts = []
     end
   end
 

@@ -11,10 +11,10 @@ Rails.application.routes.draw do
   resources :posts do
   # only: [:index, :new, :create, :edit, :update, :destroy] do
     resources :post_likes, only: [:create]
-    resources :post_comments, only: [:create]
+    resources :post_comments, only: [:new, :create, :index, :destroy]
+    resources :post_tags, only: [:new, :create, :index, :destroy]
   end
   resources :post_likes, only: [:destory]
-  resources :post_comments, only: [:destory]
 
   get 'profile', to: 'pages#profile'
   get 'log_out', to: 'pages#destroy_sesh'

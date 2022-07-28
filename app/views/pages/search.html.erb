@@ -1,9 +1,50 @@
-<h1>search</h1>
-<%= form_tag posts_path, method: :get, class: "" do %>
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    placeholder: "search by name or brand"
-  %>
-  <%= submit_tag "search", class: "" %>
-<% end %>
+<div class="search-container">
+  <%= form_tag search_path, method: :get, class: "" do %>
+    <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "search by name or brand",
+        style:"font-family: 'inconsolata', monospace; font-size: 24px; font-weight: 300; width: 85%; margin-right:25px; margin-bottom:25px; color: black; background-color: white; border: black solid 1px; border-radius: 15px; padding: 8px 15px;"
+    %>
+    <%= submit_tag "go!", class: "post-btn" %>
+  <% end %>
+  <div class="search-results">
+    <% if params[:query] && @posts.length == 0 %>
+      <h3 >no results for <%= params[:query] %> 😔</h3>
+    <% elsif !params[:query] %>
+      <p></p>
+    <% else %>
+    <p  class="mt-10">search results for: </p>
+    <h3 class="search-param"> <%= params[:query] %> </h3>
+      <% @posts.each do |post| %>
+        <div class="search-result">
+          <div class="image">
+            <%= cl_image_tag(post.image.key, crop: :pad, class: "search-image") %>
+          </div>
+          <div class="search-content">
+            <%= link_to post_path(post.id) do %>
+              <h3 class="post-title"><%= post.title %></h3>
+            <% end %>
+            <div class="stars">
+              <% case post.rating %>
+                <% when 1 %>
+                  <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+                <% when 2%>
+                  <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+                <% when 3%>
+                  <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+                <% when 4%>
+                  <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i>
+                <% when 5%>
+                  <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i>
+                <% end %>
+            </div>
+            <p> <%= truncate(post.review, :length => 80) %> </p>
+            <p class="small-p mt-10">posted <%= post.created_at.strftime("%B %d, %Y") %></p>
+            <p class="small-p mb-20">by @<%= post.user.username%></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

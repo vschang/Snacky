@@ -1,74 +1,101 @@
 <div class="all-posts">
+  <div class="filter-options">
+    <div class="sort-menu" >
+      <form action="/posts" id="post-form">
+      </form>
 
-  <div class="sort-menu" >
-    <form action="/posts" id="post-form">
-    </form>
-
-    <label for="order">sort by &nbsp;</label>
-    <select class="sort" name="order" id="order" onchange="this.form.submit()" form="post-form">
-      <% if @selected == "newest" || !@selected %>
-        <option value="newest" selected>newest first</option>
-      <% else %>
-        <option value="newest" >newest first</option>
-      <% end %>
-      <% if @selected == "oldest"%>
-        <option value="oldest" selected>oldest first</option>
-      <% else %>
-        <option value="oldest">oldest first</option>
-      <% end %>
-      <% if @selected == "highest"%>
-        <option value="highest" selected>highest rated</option>
-      <% else %>
-        <option value="highest">highest rated</option>
-      <% end %>
-      <% if @selected == "lowest"%>
-        <option value="lowest" selected>lowest rated</option>
-      <% else %>
-        <option value="lowest">lowest rated</option>
-      <% end %>
-      <% if @selected == "popular"%>
-        <option value="popular" selected>most popular</option>
-      <% else %>
-        <option value="popular">most popular</option>
-      <% end %>
-    </select>
-  </div>
-
-
-  <% @posts.each do |post|%>
-    <div class="post-container">
-      <div class="image">
-        <%= cl_image_tag(post.image.key, crop: :pad, class: "post-image") %>
-      </div>
-      <div class="post-text">
-        <%= link_to post_path(post.id) do %>
-        <h3 class="post-title"><%= post.title %></h3>
+      <label for="order">sort by &nbsp;</label>
+      <select class="sort" name="order" id="order" onchange="this.form.submit()" form="post-form">
+        <% if @selected == "newest" || !@selected %>
+          <option value="newest" selected>newest first</option>
+        <% else %>
+          <option value="newest" >newest first</option>
         <% end %>
-        <div class="stars">
-          <% case post.rating %>
-          <% when 1 %>
-            <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
-          <% when 2%>
-            <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
-          <% when 3%>
-            <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
-          <% when 4%>
-            <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i>
-          <% when 5%>
-            <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i>
+        <% if @selected == "oldest"%>
+          <option value="oldest" selected>oldest first</option>
+        <% else %>
+          <option value="oldest">oldest first</option>
+        <% end %>
+        <% if @selected == "highest"%>
+          <option value="highest" selected>highest rated</option>
+        <% else %>
+          <option value="highest">highest rated</option>
+        <% end %>
+        <% if @selected == "lowest"%>
+          <option value="lowest" selected>lowest rated</option>
+        <% else %>
+          <option value="lowest">lowest rated</option>
+        <% end %>
+        <% if @selected == "popular"%>
+          <option value="popular" selected>most popular</option>
+        <% else %>
+          <option value="popular">most popular</option>
+        <% end %>
+      </select>
+    </div>
+
+    <div class="sort-menu" >
+      <form action="/posts" id="post-form">
+      </form>
+
+      <label for="tag-filter">filter by tag&nbsp;</label>
+      <select class="filter" name="filter" id="filter" onchange="this.form.submit()" form="post-form">
+        <option <%= @selection_arr[0] %> value="all">all</option>
+        <option <%= @selection_arr[1] %> value="chips" >chips</option>
+        <option <%= @selection_arr[2] %> value="chocolate" >chocolate</option>
+        <option <%= @selection_arr[3] %> value="alcohol">alcohol</option>
+        <option <%= @selection_arr[4] %> value="gummies">gummies</option>
+        <option <%= @selection_arr[5] %> value="candy">candy</option>
+        <option <%= @selection_arr[6] %> value="pastry">pastry</option>
+      </select>
+    </div>
+</div>
+  <% if @posts.length == 0 %>
+    <div class="no-posts">
+      <h3>no posts found for <%= params[:filter]%> tag 😔</h3>
+    </div>
+  <% else %>
+    <% @posts.each do |post|%>
+      <div class="post-container-show">
+        <div class="image">
+          <%= cl_image_tag(post.image.key, crop: :pad, class: "post-image") %>
+        </div>
+        <div class="post-text">
+          <%= link_to post_path(post.id) do %>
+          <h3 class="post-title"><%= post.title %></h3>
           <% end %>
-        </div>
-        <div class="review-text">
-          <p><strong>review: </strong><%= post.review %></p>
-          <p><strong>brand: </strong><%= post.brand %></p>
-          <p><strong>country: </strong><%= post.country_name %></p>
-        </div>
-        <p class="small-p mt-10">posted <%= post.created_at.strftime("%B %d, %Y") %></p>
-        <p class="small-p mb-10">by @<%= post.user.username%></p>
-        <div class="likes-div">
-        <p>likes <%= post.post_likes.count %></p>
+          <div class="stars">
+            <% case post.rating %>
+            <% when 1 %>
+              <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+            <% when 2%>
+              <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+            <% when 3%>
+              <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i><i class="fa-solid fa-star empty-star"></i>
+            <% when 4%>
+              <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star empty-star"></i>
+            <% when 5%>
+              <i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i><i class="fa-solid fa-star star"></i>
+            <% end %>
+          </div>
+          <div class="review-text">
+            <p><strong>review: </strong><%= post.review %></p>
+            <p><strong>brand: </strong><%= post.brand %></p>
+            <p><strong>country: </strong><%= post.country_name %></p>
+          </div>
+          <p class="small-p mt-10">posted <%= post.created_at.strftime("%B %d, %Y") %></p>
+          <p class="small-p mb-10">by @<%= post.user.username%></p>
+          <div class="likes-div">
+            <p>likes <%= post.post_likes.count %></p>
+            <p>comments <%= post.post_comments.count %></p>
+            <div class="tags-container">
+              <% post.post_tags.each do |tag| %>
+              <p class="tag small-p"><%= tag.tag %></p>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <% end %>
+      <% end %>
+  <%end%>
 </div>

@@ -9,16 +9,18 @@
   justify-content: space-between;
   width: 65vw;
   margin: 0 auto;
-  border-bottom: solid black 1px;
+  border-bottom: solid black 0.5px;
 }
 
-// .post-container-show{
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   width: 61vw;
-//   margin: 0 auto;
-// }
+.post-container-show{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 65vw;
+  margin: 0 auto;
+  border-bottom: solid black 0.5px;
+  padding-bottom: 20px;
+}
 
 .show-btn{
   font-size: 24px;
@@ -42,7 +44,7 @@ h3{
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  
+
 }
 
 .post-text{
@@ -96,6 +98,7 @@ h3{
   width: 65vw;
   margin: 0 auto;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .mb-20{
@@ -103,7 +106,7 @@ h3{
 }
 
 .delete{
-  color: rgb(203, 0, 0);
+  color: red;
   background: none;
   border: none;
   font-family: 'Inconsolata', monospace;
@@ -127,4 +130,31 @@ h3{
   flex-direction: row-reverse;
   justify-content: space-between;
   width: 100%;
+}
+
+.comment-div{
+  padding: 10px;
+  border-bottom: solid black 1px;
+}
+
+.tags-container{
+  display:flex;
+
+}
+
+.tag{
+  display:flex;
+  padding:10px;
+  margin-right: 10px;
+  background-color: $green;
+  border: solid 2px $orange;
+}
+
+.filter-options{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mr-5{
+  margin-right: 5px;
 }

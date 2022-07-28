@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_22_152451) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_27_132654) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_152451) do
     t.index ["user_id"], name: "index_post_likes_on_user_id"
   end
 
+  create_table "post_tags", force: :cascade do |t|
+    t.string "tag"
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_tags_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.integer "rating"
@@ -71,6 +79,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_152451) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -96,5 +107,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_152451) do
   add_foreign_key "post_comments", "users"
   add_foreign_key "post_likes", "posts"
   add_foreign_key "post_likes", "users"
+  add_foreign_key "post_tags", "posts"
   add_foreign_key "posts", "users"
 end

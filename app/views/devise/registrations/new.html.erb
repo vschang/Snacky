@@ -35,6 +35,12 @@
                     autofocus: true,
                     input_html: { autocomplete: "username", class: 'login-input' },
                     label_html: { class: 'login-text' } %>
+      <%= f.input :image, as: :file,
+                    required: true,
+                    label: "upload a profile pic:",
+                    label_html: { class: 'form-text upload-text' },
+                    input_html: { class: 'title-input upload' },
+                    id: "file-upload-button" %>
         <%= f.input :email,
                     required: true,
                     autofocus: true,

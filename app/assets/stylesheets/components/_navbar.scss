@@ -13,6 +13,10 @@
   border: black solid 0.5px;
   height: 100%;
 }
+.active{
+  background-color: $pink;
+  text-decoration: underline;
+}
 
 .nav-btn:active{
   background-color: $pink;
@@ -53,7 +57,7 @@ a{
 
 #search-nav{
   background-color: $green;
-  flex:2;
+  flex:1;
 }
 
 #profile-nav{

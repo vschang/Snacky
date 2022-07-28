@@ -7,5 +7,11 @@ import { application } from "./application"
 import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
 
+import MapController from "./map_controller.js"
+application.register("map", MapController)
+
+import NavbarActiveController from "./navbar_active_controller.js"
+application.register("navbar-active", NavbarActiveController)
+
 import StarRatingController from "./star_rating_controller.js"
 application.register("star-rating", StarRatingController)

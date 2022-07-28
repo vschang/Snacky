@@ -18,7 +18,6 @@ class PostsController < ApplicationController
     @index_of_likes_of_posts_with_i = @likes_of_posts_with_i.map {|likes, index| index}
     @posts_with_i = @index_of_likes_of_posts_with_i.map {|index| @posts[index]}
 
-
     case params[:order]
     when "newest"
       @posts = Post.all.order(:created_at => :desc)
@@ -32,6 +31,28 @@ class PostsController < ApplicationController
       @posts = @posts_with_i.reverse
     end
 
+    if params[:filter] == "all"
+      @posts = Post.all
+    else
+      @posts = PostTag.where(tag: params[:filter]).map {|post_tag| post_tag.post}
+    end
+
+    if params[:filter]
+      arr = ["all", "chips", "chocolate", "alcohol", "gummies", "candy","pastry"]
+      index = arr.find_index(params[:filter])
+      @selection_arr = ["", "","", "","", "",""]
+      @selection_arr[index] = "selected"
+    else
+      @posts = @all_posts.sort_by {|posts| posts.created_at}.reverse
+      @selection_arr = ["selected", "","", "","", "",""]
+    end
+
+    # @markers = @posts.geocoded.map do |post|
+    #   {
+    #     lat: post.latitude,
+    #     lng: post.longitude
+    #   }
+    # end
   end
 
   def show
@@ -40,8 +61,11 @@ class PostsController < ApplicationController
     @post_likes = PostLike.new
     @liked_post = PostLike.find_by(post_id: @post.id, user_id: @user.id)
 
-    # lambda liked_by(user)
-    #   @post.post_likes.map {|post_like| post_like.user.username}
+    # @markers = @posts.geocoded.map do |post|
+    #   {
+    #     lat: post.latitude,
+    #     lng: post.longitude
+    #   }
     # end
   end
 

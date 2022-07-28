@@ -31,3 +31,43 @@
   margin-top: 0px;
   font-weight: 300;
 }
+
+.dropdown-btn{
+  background: none;
+  border: none;
+  font-family: 'Inconsolata', monospace;
+  font-size: 24px;
+}
+
+.dropdown-content{
+  display:none;
+  flex-direction: column;
+  background: $orange;
+}
+
+.dropdown-content:hover{
+  display:flex;
+  flex-direction: column;
+  background: $orange;
+  padding: 10px;
+}
+
+.dropdown-content a:hover {
+  display:flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: $pink;
+  text-decoration: underline;
+}
+
+.dropdown:hover .dropdown-content {
+  display:flex;
+  flex-direction: column;
+  background: $orange;
+  padding: 10px;
+}
+
+.dropdown:hover .dropdown-btn {
+  text-decoration: underline;
+
+}
