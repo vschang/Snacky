@@ -1,0 +1,23 @@
+<h3>edit your profile picture</h3>
+
+<%= simple_form_for(@user, as: :user, url: update_prof_pic_path) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <p>current profile picture</p>
+    <% if current_user.prof_pic.present? %>
+      <%= image_tag(@user.prof_pic, class: "prof-pic") unless @user.prof_pic.nil? %>
+    <% else %>
+      <%= image_tag('avatar.png', class:'prof-pic') %>
+    <% end %>
+
+    <%= f.input :image, as: :file,
+                    label: "change your profile pic:",
+                    label_html: { class: 'login-text ' },
+                    input_html: { class: '' },
+                    id: "file-upload-button" %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, "update", class: "post-btn" %>
+  </div>
+<% end %>

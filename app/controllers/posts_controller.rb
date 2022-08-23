@@ -47,12 +47,15 @@ class PostsController < ApplicationController
       @selection_arr = ["selected", "","", "","", "",""]
     end
 
-    # @markers = @posts.geocoded.map do |post|
-    #   {
-    #     lat: post.latitude,
-    #     lng: post.longitude
-    #   }
-    # end
+    @geocoded_posts = Post.all.geocoded
+    @markers = @geocoded_posts.map do |post|
+      {
+        lat: post.latitude,
+        lng: post.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {post: post}),
+        image_url: helpers.asset_url("pink-gummy-removebg-preview.png")
+      }
+    end
   end
 
   def show
@@ -61,12 +64,7 @@ class PostsController < ApplicationController
     @post_likes = PostLike.new
     @liked_post = PostLike.find_by(post_id: @post.id, user_id: @user.id)
 
-    # @markers = @posts.geocoded.map do |post|
-    #   {
-    #     lat: post.latitude,
-    #     lng: post.longitude
-    #   }
-    # end
+
   end
 
   def new

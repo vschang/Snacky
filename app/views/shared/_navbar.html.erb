@@ -18,7 +18,7 @@
       <button class="nav-btn " id="profile-nav" data-controller="navbar-active">
         <%= link_to profile_path do %>
         <% if current_user.prof_pic.present? %>
-          <%= image_tag(@user.prof_pic, class: "avatar") unless @user.prof_pic.nil? %>
+          <%= image_tag(current_user.prof_pic, class: "avatar")  %>
         <% else %>
           <%= image_tag('avatar.png', class:'avatar') %>
         <% end %>

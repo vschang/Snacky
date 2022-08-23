@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+
   resources :users do [:show, :edit, :update]
   end
 
@@ -20,5 +21,7 @@ Rails.application.routes.draw do
   get 'log_out', to: 'pages#destroy_sesh'
   get 'search', to: 'pages#search'
   get 'faq', to: 'pages#faq'
+  get 'edit_prof_pic', to: 'pages#edit_prof_pic'
+  patch 'update_prof_pic', to: 'pages#update_prof_pic'
   get '/posts' => "welcome#index", :as => :user_root
 end

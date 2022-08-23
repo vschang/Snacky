@@ -45,7 +45,7 @@
         <% @post.post_comments.each do |comment| %>
           <div class="comment-div">
             <p class="small-p">@<%= comment.user.username %> said:</p>
-            <em><p class="small-p"><%= comment.content %></p></em>
+            <em><p><%= comment.content %></p></em>
             <p class="small-p">on <%= comment.created_at.strftime("%B %d, %Y") %></p>
             <% if comment.persisted? %>
               <%= button_to post_post_comment_path(@post, comment.id), method: :delete, class:"comment-delete-btn" do %>

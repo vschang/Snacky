@@ -1,8 +1,10 @@
 <div class="profile-info">
-  <% if current_user.prof_pic.present? %>
-    <%= image_tag(@user.prof_pic, class: "prof-pic") unless @user.prof_pic.nil? %>
-    <% else %>
-    <%= image_tag('avatar.png', class:'prof-pic') %>
+  <%= link_to '/edit_prof_pic' do%>
+    <% if current_user.prof_pic.present? %>
+      <%= image_tag(@user.prof_pic, class: "prof-pic") %>
+      <% else %>
+      <%= image_tag('avatar.png', class:'prof-pic') %>
+    <% end %>
   <% end %>
   <div class="profile-text">
     <% if @posts.count == 1 %>
@@ -15,7 +17,7 @@
   <div class="dropdown">
     <button class="dropdown-btn">settings</button>
     <div class="dropdown-content ">
-    <%= link_to "edit", 'users/edit', class:'dropdown-edit'%>
+    <%= link_to "edit profile", 'users/edit', class:'dropdown-edit'%>
     <%= link_to "logout", '/log_out', class:'dropdown-logout'%>
     </div>
   </div>

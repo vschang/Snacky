@@ -8,7 +8,7 @@ class PostCommentsController < ApplicationController
     if @post_comment.save
       redirect_to post_path(@post)
     else
-      render 'post/show', alert: 'Unable to comment.'
+      redirect_to post_path(@post)
     end
   end
 
